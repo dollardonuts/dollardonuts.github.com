@@ -96,8 +96,30 @@
     }
     .counter .donut {
       font-size: 2.8rem;
-      animation: rotateBounce 1s ease forwards;
+      animation: rotateBounce 2s ease-in-out infinite; /* Changed animation to be infinite */
       display: inline-block;
+    }
+    /* New styles for the progress bar */
+    .progress-container {
+      background-color: #f0e9e2;
+      border-radius: 99px;
+      height: 20px;
+      width: 80%;
+      max-width: 500px;
+      margin: 20px auto 10px;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .progress-bar {
+      background-color: var(--accent);
+      height: 100%;
+      border-radius: 99px;
+      width: 0%; /* Width is set by JS */
+      transition: width 1s ease-out;
+    }
+    .progress-label {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 20px;
     }
     @keyframes bounce {
       0% { transform: translateY(15px); opacity: 0; }
@@ -105,9 +127,9 @@
       100% { transform: translateY(0); opacity: 1; }
     }
     @keyframes rotateBounce {
-      0% { transform: rotate(-15deg) translateY(10px); opacity: 0; }
-      50% { transform: rotate(15deg) translateY(-5px); opacity: 1; }
-      100% { transform: rotate(0deg) translateY(0); opacity: 1; }
+      0% { transform: rotate(-10deg) translateY(5px); }
+      50% { transform: rotate(10deg) translateY(-5px); }
+      100% { transform: rotate(-10deg) translateY(5px); }
     }
     .facts {
       display: grid;
@@ -143,27 +165,31 @@
       <div class="hero-text">
         <h2>Buy a dozen Krispy Kreme donuts</h2>
         <p>Every $12 voucher purchases a dozen donuts. Vouchers are digital — you will receive them to the email or phone number you provide at checkout by <strong>11:00 PM ET</strong> the same day. Redeemable in-store at any Krispy Kreme location.</p>
-        <p>All proceeds support <a href="https://ccda.net/find-help/immigrants-refugees/education-workforce-development/" target="_blank" rel="noopener">Catholic Charities of Arlington's programs</a> to help immigrants learn English and vital life skills.</p>
-        <a href="https://square.link/u/8I81VqXo" target="_blank" rel="noopener" class="buy-btn">Purchase Voucher</a>
+        <p>All proceeds support <a href="https://ccda.net/find-help/immigrants-refugees/education-workforce-development/" target="_blank" rel="noopener">Catholic Charities of Arlington's programs</a> to help immigrants and refugees learn English, vital life skills, and join our communities.</p>
+        <a href="https://square.link/u/8I81VqXo" target="_blank" rel="noopener" class="buy-btn">Get your dozen!</a>
       </div>
       <div class="card" style="flex:1 1 300px; text-align:center;">
-        <p style="color:var(--muted)">This is a voucher for a dozen donuts, redeemable at any Krispy Kreme.</p>
+        <p style="color:var(--muted)">This is a voucher for a dozen donuts, redeemable at any Krispy Kreme. No expiration date</p>
       </div>
     </section>
 
     <section class="facts">
       <div class="card">
         <strong>Better Price</strong>
-        <p>Our vouchers are $12 per dozen — Krispy Kreme charges about $15.39.</p>
+        <p>Our boxes are $12, Krispy Kreme charges $15.39.</p>
       </div>
       <div class="card">
         <strong>Better Feeling</strong>
-        <p>Eating donuts can make the world a better place. Over $4 from every dozen goes straight to Catholic Charities.</p>
+        <p>Eating donuts <strong>can</strong> make the world a better place. Over $4 from every dozen goes straight to Catholic Charities.*</p>
       </div>
     </section>
 
     <section class="counter">
       <h3>Total Sold</h3>
+      <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-label" id="progressLabel"></div>
       <div class="number" id="donutCount">
         <span class="donut">🍩</span> <span id="countValue">240</span>
       </div>
@@ -171,12 +197,29 @@
 
     <footer>
       <p>Questions? Email <a href="mailto:dollardonuts.com@gmail.com">dollardonuts.com@gmail.com</a></p>
-      <p>DollarDonuts — All proceeds to Catholic Charities of Arlington, VA</p>
+      <p>DollarDonuts — All revenue to Catholic Charities of Arlington, VA</p>
+      <p>*When purchased without discount</p>
     </footer>
   </div>
   <script>
-    const INITIAL_DONUTS_SOLD = 240; // change here to update counter
+    // You can change the numbers here to update the counter and progress bar
+    const INITIAL_DONUTS_SOLD = 240; 
+    const GOAL = 2000;
+
+    // Update the large counter number
     document.getElementById('countValue').textContent = INITIAL_DONUTS_SOLD.toLocaleString();
+
+    // Calculate the percentage for the progress bar
+    const percentage = (INITIAL_DONUTS_SOLD / GOAL) * 100;
+    
+    // Set the width of the progress bar
+    // Using a setTimeout to allow the page to render before the animation starts
+    setTimeout(() => {
+      document.getElementById('progressBar').style.width = percentage + '%';
+    }, 100);
+
+    // Update the text label for the progress bar
+    document.getElementById('progressLabel').textContent = `${INITIAL_DONUTS_SOLD.toLocaleString()} / ${GOAL.toLocaleString()} dozens sold`;
   </script>
 </body>
 </html>
