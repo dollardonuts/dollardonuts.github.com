@@ -57,9 +57,8 @@
       margin-bottom: 20px;
       color: var(--muted);
     }
-    .buy-btn {
+    .buy-btn, .bulk-btn {
       display: inline-block;
-      background-color: var(--accent);
       color: white;
       font-weight: bold;
       padding: 16px 28px;
@@ -67,9 +66,20 @@
       text-decoration: none;
       font-size: 1.1rem;
       transition: background-color 0.2s ease;
+      text-align: center;
+    }
+    .buy-btn {
+      background-color: var(--accent);
     }
     .buy-btn:hover {
       background-color: var(--accent-dark);
+    }
+    .bulk-btn {
+        background-color: #c4c4c4; /* Light grey */
+        margin-top: 10px;
+    }
+    .bulk-btn:hover {
+        background-color: #a9a9a9; /* Darker grey on hover */
     }
     .card {
       background-color: var(--card);
@@ -169,11 +179,12 @@
       <div class="hero-text">
         <h2>Buy a dozen Krispy Kreme donuts</h2>
         <p>Every $12 voucher purchases a dozen donuts. Vouchers are digital — you will receive them to the email or phone number you provide at checkout by <strong>11:00 PM ET</strong> the same day. Redeemable in-store at any Krispy Kreme location.</p>
-        <p>All proceeds support <a href="https://ccda.net/find-help/immigrants-refugees/education-workforce-development/" target="_blank" rel="noopener">Catholic Charities of Arlington's programs</a> to help immigrants and refugees learn English, vital life skills, and join our communities.</p>
+        <p>All proceeds support <a href="https://ccda.net/" target="_blank" rel="noopener">Catholic Charities of Arlington's </a>many programs, from helping refugees learn English, funding local schools in the Diocese, to providing housing, food, and emotional support to the most vulnerable members of our community.</p>
         <a href="https://square.link/u/8I81VqXo" target="_blank" rel="noopener" class="buy-btn">Get your dozen!</a>
+        <a href="bulk-orders.html" class="bulk-btn">Bulk - Large Orders</a>
       </div>
       <div class="card" style="flex:1 1 300px; text-align:center;">
-        <p style="color:var(--muted)">This is a voucher for a dozen donuts, redeemable at any Krispy Kreme. No expiration date</p>
+        <p style="color:var(--muted)">This is a voucher for a dozen glazed donuts, redeemable at any Krispy Kreme. No expiration date</p>
       </div>
     </section>
 
@@ -203,12 +214,13 @@
       <p>Questions? Email <a href="mailto:dollardonuts.com@gmail.com">dollardonuts.com@gmail.com</a></p>
       <p>DollarDonuts — All revenue to Catholic Charities of Arlington, VA</p>
       <p>*When purchased without discount</p>
+      <p><span class="highlight">Made by students with ❤️</p>
     </footer>
   </div>
   <script>
     // You can change the numbers here to update the counter and progress bar
     const INITIAL_DONUTS_SOLD = 240; 
-    const GOAL = 2000;
+    const GOAL = 5000;
 
     // Update the large counter number
     document.getElementById('countValue').textContent = INITIAL_DONUTS_SOLD.toLocaleString();
