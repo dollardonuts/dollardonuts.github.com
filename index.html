@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -89,11 +90,12 @@
     }
     .counter {
       text-align: center;
-      margin-bottom: 60px;
     }
     .counter h3 {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       margin-bottom: 10px;
+      color: var(--muted);
+      font-weight: 400;
     }
     .counter .number {
       font-size: 2.2rem;
@@ -108,28 +110,6 @@
       font-size: 2.8rem;
       animation: rotateBounce 2s ease-in-out infinite; /* Changed animation to be infinite */
       display: inline-block;
-    }
-    /* New styles for the progress bar */
-    .progress-container {
-      background-color: #f0e9e2;
-      border-radius: 99px;
-      height: 20px;
-      width: 80%;
-      max-width: 500px;
-      margin: 20px auto 10px;
-      box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-    }
-    .progress-bar {
-      background-color: var(--accent);
-      height: 100%;
-      border-radius: 99px;
-      width: 0%; /* Width is set by JS */
-      transition: width 1s ease-out;
-    }
-    .progress-label {
-      font-size: 0.9rem;
-      color: var(--muted);
-      margin-bottom: 20px;
     }
     @keyframes bounce {
       0% { transform: translateY(15px); opacity: 0; }
@@ -183,8 +163,16 @@
         <a href="https://square.link/u/8I81VqXo" target="_blank" rel="noopener" class="buy-btn">Get your dozen!</a>
         <a href="bulk-orders.html" class="bulk-btn">Bulk - Large Orders</a>
       </div>
-      <div class="card" style="flex:1 1 300px; text-align:center;">
-        <p style="color:var(--muted)">This is a voucher for a dozen glazed donuts, redeemable at any Krispy Kreme. No expiration date</p>
+      <div style="flex:1 1 300px; text-align:center;">
+          <div class="card">
+            <p style="color:var(--muted)">This is a voucher for a dozen glazed donuts, redeemable at any Krispy Kreme. No expiration date</p>
+          </div>
+          <div class="counter" style="margin-top:40px;">
+            <h3>Donuts Sold</h3>
+            <div class="number" id="donutCount">
+              <span class="donut">🍩</span> <span id="countValue">387</span>
+            </div>
+          </div>
       </div>
     </section>
 
@@ -199,17 +187,6 @@
       </div>
     </section>
 
-    <section class="counter">
-      <h3>Total Sold & Our Goal</h3>
-      <div class="progress-container">
-        <div class="progress-bar" id="progressBar"></div>
-      </div>
-      <div class="progress-label" id="progressLabel"></div>
-      <div class="number" id="donutCount">
-        <span class="donut">🍩</span> <span id="countValue">387</span>
-      </div>
-    </section>
-
     <footer>
       <p>Questions? Email <a href="mailto:dollardonuts.com@gmail.com">dollardonuts.com@gmail.com</a></p>
       <p>Follow our <a href="https://www.instagram.com/dollar.donuts/">Instagram</a></p>
@@ -219,24 +196,11 @@
     </footer>
   </div>
   <script>
-    // You can change the numbers here to update the counter and progress bar
+    // You can change the number here to update the counter
     const INITIAL_DONUTS_SOLD = 387; 
-    const GOAL = 5000;
 
     // Update the large counter number
     document.getElementById('countValue').textContent = INITIAL_DONUTS_SOLD.toLocaleString();
-
-    // Calculate the percentage for the progress bar
-    const percentage = (INITIAL_DONUTS_SOLD / GOAL) * 100;
-    
-    // Set the width of the progress bar
-    // Using a setTimeout to allow the page to render before the animation starts
-    setTimeout(() => {
-      document.getElementById('progressBar').style.width = percentage + '%';
-    }, 100);
-
-    // Update the text label for the progress bar
-    document.getElementById('progressLabel').textContent = `${INITIAL_DONUTS_SOLD.toLocaleString()} / ${GOAL.toLocaleString()} donuts sold`;
   </script>
 </body>
 </html>
